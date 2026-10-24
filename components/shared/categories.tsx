@@ -23,7 +23,7 @@ export const Categories: React.FC<Props> = ({ className }) => {
 
 	return (
 		<div
-			className={cn('inline-flex gap-1 p-1 rounded-2xl bg-gray-50 ', className)}
+			className={cn('inline-flex gap-1 p-1 rounded-2xl bg-gray-50', className)}
 		>
 			{cats.map(({ name, id }, index) => (
 				<a
@@ -35,7 +35,7 @@ export const Categories: React.FC<Props> = ({ className }) => {
 					href={`/#${name}`}
 					key={index}
 				>
-					<button>{name}</button>
+					<button className='cursor-pointer'>{name}</button>
 				</a>
 			))}
 		</div>
