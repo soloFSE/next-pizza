@@ -13,10 +13,15 @@ model User {
 	fullName 	String
 	email 	 	String @unique
 	password 	String
-	role UserRole
 
-	cart Cart?
-	orders Order[]
+	role 		UserRole @default(USER)
+	verified DateTime
+
+	provider 	String?
+	providerId 	String?
+
+	cart 		Cart?
+	orders 		Order[]
 	verificationCode VerificationCode?
 
 	createdAt 	DateTime @default(now())
@@ -41,7 +46,7 @@ model Product {
 	category 	Category @relation(fields: [categoryId], references: [id])
 	categoryId 	Int
 
-	ingrdients 	Ingredient[]
+	ingredients 	Ingredient[]
 	productVariations ProductVariation[]
 
 	createdAt  	DateTime @default(now())
@@ -138,9 +143,11 @@ model VerificationCode {
 	user User @relation(fields: [userId], references: [id])
 	userId Int @unique
 
-	code String
+	code String @unique
 
 	createdAt DateTime @default(now())
+
+	@@unique([userId, code])
 }
 
 enum OrderStatus {
