@@ -1,4 +1,5 @@
 import { Container, Filters, ProductCard, ProductGroupList, SortPopup, Title, TopBar } from "@/components/shared";
+import { Suspense } from "react";
 
 export default function Home() {
 	return (
@@ -12,7 +13,9 @@ export default function Home() {
 			<Container className='mt-10 pb-14'>
 				<div className='flex gap-20'>
 					<div className='w-62.5'>
-						<Filters />
+						<Suspense fallback={<div>Загрузка фильтров...</div>}>
+							<Filters />
+						</Suspense>
 					</div>
 
 					<div className='flex-1'>
